@@ -14,10 +14,10 @@ import com.synload.framework.http.annotations.Post;
 public class THtml {
 	@Get("/template") // HTTP get annotation ( registers as get request http://yoursite.com:8080/template )
 	@MimeType("text/html") // returns OK from server and the mimetype content type
-	@Post("/retard_test")
 	public void gHtml(HttpRequest hr){
+		hr.getResponse().setContentLength("Template is working".length());
 		try {
-			hr.getResponse().getWriter().print("Module template works!");
+			hr.getResponse().getOutputStream().write("Template is working".getBytes("UTF-8"));
 		} catch (IOException e) {
 			Log.info(e.getMessage(), THtml.class);
 		}
